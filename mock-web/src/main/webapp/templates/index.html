@@ -1,0 +1,209 @@
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+
+    <ul class="nav nav-tabs" id="myTab">
+        <li class="active" ><a href="#tab1" data-toggle="tab"><strong>DubboMock</strong></a></li>
+        <li><a href="#tab2" data-toggle="tab"><strong>RestMock</strong></a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+            <div class="row">
+                <div class="col-lg-2">
+                    <button type="button" class="btn btn-primary btn-sm btn-dubbo" ng-click="editDubbo()">新增</button>
+                </div>
+                <div class="col-lg-offset-8" >
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" ng-model="dubbokey" placeholder="请输入要查找的方法名"/></div>
+                        <button type="button" class="btn btn-primary btn-sm btn-dubbo" ng-click="queryDubboList()">查询</button>
+                        <!--<button type="button" class="btn btn-primary btn-sm btn-dubbo" ng-click="test()">测试</button>-->
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+                        <thead>
+                        <tr>
+                            <!--<th width="5%" class="text-center">#</th>-->
+                            <th width="10%" class="text-center">facade</th>
+                            <th width="10%" class="text-center">方法名</th>
+                            <th width="30%" class="text-center">参数</th>
+                            <th width="30%" class="text-center">调用结果</th>
+                            <th width="15%" class="text-center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="word-break" ng-repeat="item in list  | filter:search">
+                            <!--<td width="5%" class="text-center">{{$index+1}}</td>-->
+                            <td width="10%" class="text-center">{{item.facadeName}}</td>
+                            <td width="10%" class="text-center">{{item.methodName}}</td>
+                            <td width="30%" class="text-center">{{item.request}}</td>
+                            <td width="30%" class="text-center">{{item.response}}</td>
+                            <td width="15%" class="text-center">
+                                <a href="javascript:void(0);" ng-click="editDubbo($index)" title="编辑"><i class="icon-edit"></i></a>&nbsp;&nbsp;
+                                <a href="javascript:void(0);" ng-click="callDubbo($index)" title="模拟调用"><i class="icon-play"></i></a>&nbsp;&nbsp;
+                                <a href="javascript:void(0);" ng-click="removeList($index)" title="删除"><i class="icon-trash"></i></a>&nbsp;&nbsp;
+                                <!-- <a href="javascript:void(0);" ng-click="exportFile($index,0)" title="导出"><i class="icon-download"></i></a> -->
+                            </td>
+                        </tr>
+                        <tr class="word-break">
+                        	<!-- 
+                        	<td>
+                        		<input type="file" id="file" name="file">
+                        	</td>
+                        	<td>
+                        		<input type="button" id="btnUpload" value="上传"/>
+                        		<input type="hidden" id="flag" name="flag" value="ajax文件上传"/>
+                        	</td>
+                        	 -->
+	                        <td colspan="5" align="right" class="text-center">
+	                        	<ul class="pagination" id="dubboPagination">
+								  
+								</ul>
+	                        </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="tab2">
+        	<div class="col-lg-2">
+                    <button type="button" class="btn btn-primary btn-sm btn-rest" ng-click="editRest()">新增</button></p>
+                </div>
+                <div class="col-lg-offset-8" >
+                   <div class="col-lg-8">
+                       <input type="text" class="form-control" ng-model="restkey" placeholder="请输入要查找的请求地址"/>
+                   </div>
+                       <button type="button" class="btn btn-primary btn-sm btn-dubbo" ng-click="queryRestList()">查询</button>
+                </div>
+                <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+                        <thead>
+                        <tr>
+                        	<!--<th width="4%" class="text-center">#</th>-->
+                            <th width="8%" class="text-center">请求类型</th>
+                            <th width="20%" class="text-center">请求地址</th>
+                            <th width="8%" class="text-center">请求头</th>
+                            <th width="20%" class="text-center">请求体</th>
+                            <th width="10%" class="text-center">响应头</th>
+                            <th class="text-center">调用结果</th>
+                            <th width="10%" class="text-center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="word-break" ng-repeat="rest in restlist  | filter:searcher">
+                            <!-- <td width="4%" class="text-center">{{$index+1}}</td> -->
+                            <td width="8%" class="text-center">{{rest.restMethod}}</td>
+                            <td width="20%" class="text-center">{{rest.url}}</td>
+                            <td width="8%" class="text-center">{{rest.requestHeaders}}</td>
+                            <td width="20%" class="text-center">{{rest.request}}</td>
+                            <td width="10%" class="text-center">{{rest.responseHeaders}}</td>
+                            <td class="text-center">{{rest.response}}</td>
+                            <td width="10%" class="text-center">
+                                <a href="javascript:void(0);" ng-click="editRest($index)" title="编辑"><i class="icon-edit"></i></a>&nbsp;&nbsp;
+                                <a href="javascript:void(0);" ng-click="callRest($index)" title="模拟调用"><i class="icon-play"></i></a>&nbsp;&nbsp;
+                                <a href="javascript:void(0);" ng-click="removeRestList($index)" title="删除"><i class="icon-trash"></i></a>&nbsp;&nbsp;
+                                <!-- <a href="javascript:void(0);" ng-click="exportFile($index,1)" title="导出"><i class="icon-download"></i></a> -->
+                            </td>
+                        </tr>
+                        <tr>
+	                        <td colspan="7" align="right">
+	                        	<ul class="pagination" id="restPagination">
+								  
+								</ul>
+	                        </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#myTab a:first').tab('show');//初始化显示哪个tab
+        $('#myTab a').click(function (e) {
+            e.preventDefault();//阻止a链接的跳转行为
+            $(this).tab('show');//显示当前选中的链接及关联的content
+        })
+
+        $("#btnUpload").click(function() {
+            ajaxFileUpload();
+    	});  
+		
+    });
+
+    function ajaxFileUpload() {
+        var elementIds=["flag"]; //flag为id、name属性名
+        $.ajaxFileUpload({
+            url: contextPath+'/conf/upload', 
+            type: 'post',
+            secureuri: false, //一般设置为false
+            fileElementId: 'file', // 上传文件的id、name属性名
+            dataType: 'text', //返回值类型，一般设置为json、application/json
+            elementIds: elementIds, //传递参数到服务器
+            success: function(data, status){  
+                alert(data);
+            },
+            error: function(data, status, e){ 
+                alert(e);
+            }
+        });
+        //return false;
+    }
+    
+    
+    /**
+     * 分页计算
+     */
+    function pageController(pagecount,pagesize,currentpage,keyword,type){
+        if(keyword == ""){
+        	keyword = "''";
+        }else{
+        	keyword = "'"+keyword+"'";
+        }
+        var counts = "";//总页数
+        var pagehtml="";  
+        if(pagecount%pagesize==0){  
+            counts = parseInt(pagecount/pagesize); //总页数 
+        }else{  
+            counts = parseInt(pagecount/pagesize)+1;  
+        }  
+        //只有一页内容  
+        if(pagecount<=pagesize){pagehtml="";}  
+        //大于一页内容  
+        if(pagecount>pagesize){  
+            if(currentpage>1){  
+            	pagehtml+= '<li><a href="javascript:void(0);" onclick="queryList('+keyword+','+1+','+type+')">首页</a></li>';
+                pagehtml+= '<li><a href="javascript:void(0);" onclick="queryList('+keyword+','+(currentpage-1)+','+type+')">上一页</a></li>';  
+            }  
+            for(var i=0;i<counts;i++){  
+                if(i>=(currentpage-3) && i<(currentpage+3)){  
+                    if(i==currentpage-1){  
+                        pagehtml+= '<li class="active"><a href="javascript:void(0);" onclick="queryList('+keyword+','+(i+1)+','+type+')">'+(i+1)+'</a></li>';  
+                    }else{  
+                        pagehtml+= '<li><a href="javascript:void(0);" onclick="queryList('+keyword+','+(i+1)+','+type+')">'+(i+1)+'</a></li>';  
+                    }  
+                      
+                }  
+            }  
+            if(currentpage<counts){  
+                pagehtml+= '<li><a href="javascript:void(0);" onclick="queryList('+keyword+','+(currentpage+1)+','+type+')">下一页</a></li>';  
+                pagehtml+= '<li><a href="javascript:void(0);" onclick="queryList('+keyword+','+counts+','+type+')">尾页</a></li>';
+            }  
+            pagehtml+= '<li><a href="javascript:void(0);">  共'+counts+'页,'+pagecount+'条记录  </a></li>';
+        }  
+        if(type == '1'){
+	        $("#restPagination").html(pagehtml); 
+        }else if(type == '0'){
+        	$("#dubboPagination").html(pagehtml); 
+        }
+    }
+
+    
+</script>
+
+
+

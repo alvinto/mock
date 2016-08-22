@@ -1,0 +1,43 @@
+<div class="container">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-lg-1">Facade</label>
+            <div class="col-lg-6">
+                <input type="text" name="facadeName" ng-model= "obj.facadeName" class="form-control" placeholder="请输入facade接口名称">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-1">方法名</label>
+            <div class="col-lg-6">
+                <input type="text" name="method" ng-model= "obj.methodName" class="form-control" placeholder="请输入调用方法">
+            </div>
+        </div>
+        <div class="form-group args-wrap">
+            <label class="control-label col-lg-1">参数</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" name="request" ng-model = "obj.request" ng-blur="validatorJson('requestTip')" placeholder='请输入传入参数json格式.例如：{"name":"XX","id":"XX"}'>
+                <p ng-show="requestTip"><font color="#FF0000">参数格式不正确</font></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-1">调用结果</label>
+            <div class="col-lg-6">
+				<textarea type="text" cols="2" rows="5" ng-model = "obj.response" name="response" class="form-control" placeholder="返回调用结果" ng-blur="validatorJson('responseTip')">
+
+				</textarea>
+				<p ng-show="responseTip"><font color="#FF0000">调用结果格式不正确</font></p>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top:5px;">
+            <div class="col-lg-8 text-center">
+                &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary submit" ng-click="submit()">保存</button>
+                <button type="button" class="btn btn-primary btn-warning" ng-click="cancel()">取消</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+	$(function() {
+	    $(".panel").draggable();
+  	});
+</script>

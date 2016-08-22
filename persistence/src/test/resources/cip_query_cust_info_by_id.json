@@ -1,0 +1,14 @@
+#protocol
+dubbo/1.1
+#method
+com.pinganfu.cip.common.facade.customer.CustomerQueryFacade.queryCustInfoByCustomerId
+#request
+{
+
+
+}
+#response
+{
+
+}
+

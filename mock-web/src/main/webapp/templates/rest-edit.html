@@ -1,0 +1,65 @@
+<div class="container">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-lg-1">请求类型</label>
+            <div class="col-lg-6">
+                <!--  <input type="text" name="facadeName" ng-model= "obj.facadeName" class="form-control" placeholder="请输入facade接口名称">-->
+                <select name="restMethod" ng-model="obj.restMethod">
+                	<option value="">请选择请求类型</option>
+                	<option value="get">GET</option>
+                	<option value="post">POST</option>
+                	<option value="put">PUT</option>
+                	<option value="delete">DELETE</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-1">请求地址</label>
+            <div class="col-lg-6">
+                <input type="text" name="url" ng-model= "obj.url" class="form-control" placeholder="请输入请求地址.格式如：/h5/user/userlist"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-1">请求头</label>
+            <div class="col-lg-6">
+                <textarea type="text" cols="2" rows="2" name="requestHeaders" ng-model= "obj.requestHeaders" class="form-control" ng-blur="validatorJson('requestHeadersTip')" placeholder='请输入传入参数json格式.例如：{"Accept":"application/json","id":"xxx"}'></textarea>
+                <p ng-show="requestHeadersTip"><font color="#FF0000">请求头格式不正确</font></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-1">请求体</label>
+            <div class="col-lg-6">
+                <textarea type="text" cols="2" rows="3" name="request" ng-model= "obj.request" class="form-control" ng-blur="validatorJson('requestTip')" placeholder='请输入传入参数json格式.例如：{"name":"xxxx","id":"xxx"}'></textarea>
+                <p ng-show="requestTip"><font color="#FF0000">请求体格式不正确</font></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-1">响应头</label>
+            <div class="col-lg-6">
+				<textarea type="text" cols="2" rows="2" ng-model = "obj.responseHeaders" name="responseHeaders" class="form-control" ng-blur="validatorJson('responseHeadersTip')" placeholder='请输入传入参数json格式.例如：{"status":"200","reason":"成功"}'></textarea>
+				<p ng-show="responseHeadersTip"><font color="#FF0000">响应头格式不正确</font></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-1">响应体</label>
+            <div class="col-lg-6">
+				<textarea type="text" cols="3" rows="3" ng-model = "obj.response" name="response" class="form-control" ng-blur="validatorJson('responseTip')" placeholder='返回调用结果,如为json格式，例如：{"status":"200","reason":"成功"}'>
+
+				</textarea>
+				<p ng-show="responseTip"><font color="#FF0000">响应体格式不正确</font></p>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top:5px;">
+            <div class="col-lg-8 text-center">
+                &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary submit" ng-click="submit()">保存</button>
+                <button type="button" class="btn btn-primary btn-warning" ng-click="cancel()">取消</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+	$(function() {
+	    $(".panel").draggable();
+  	});
+</script>

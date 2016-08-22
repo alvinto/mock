@@ -1,0 +1,19 @@
+#protocol
+rest/1.1
+#method
+post p1/login.json
+#request header
+{
+"osName":"ios"
+}
+#request
+{
+
+}
+#response header
+
+#response
+{
+
+}
+
